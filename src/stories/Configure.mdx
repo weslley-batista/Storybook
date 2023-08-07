@@ -1,0 +1,80 @@
+import { Meta } from "@storybook/blocks";
+
+<Meta title="Apresentação" />
+
+# Eae < Dev /> 
+
+## O que é storybook ?
+
+Esse é o storybook e ele existe como objetivo de facilitar a documentação dos codigos desenvolvidos no CITi, além de
+acelerar o desenvolvimento de projetos direcionados a Produto viável mínimo (MVP).
+
+## O que vou encontrar nele ?
+
+Será possivel de visualizar Componentes e paginas inteiras, com suas respectivas propriedades. O que facilitarar o entendimento
+para possivel ajustes na hora de codar.
+
+## Como usar ?
+
+Para começar a alterar a estrutura do storybook basta criar um arquivo [nome].stories.mdx
+
+### Como criar abas na barra lateral ?
+
+Basta criar um arquivo [nome].stories.mdx e colocar as linhas de comando abaixo.
+
+```
+    import { Meta } from "@storybook/blocks";
+```
+
+```
+    <Meta title="NomeDaAba/ItemDentroDela" />
+```
+
+A propriedade `title` na tag `META` é ondem será especificado a disposição e quantidade de aninhamento das abas, podendo ter varias dentro da outra.
+
+### Como documentar elemento TSX ?
+
+Basta criar o elemento no arquivo .tsx normalmente. Para fazer ele aparecer no storybook faça um import
+simples para um arquivo [nome].stories.mdx onde desejar que ele fique.
+
+```
+    import Elemento from './elemento'
+```
+
+```
+    <Elemento />
+```
+
+Nesse ponto ele ja deve aparecer na tela.
+
+### Mostrar propriedades!
+Imports para poder utilizar as ferramentas de visualização
+```
+    import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+```
+
+Adicionar a propriedade 'component' a ``TAG`` Meta, passando o elemento a importado.
+
+```
+    <Meta title="Components/elemento" component={Elemento} />
+```
+Irá carregar todas as propriedades recebidas.
+```
+    <ArgsTable of={Elemento} />
+```
+Deve ser colocado todas as propriedades do elemento em ``args``;
+```
+<Canvas>
+  <Story
+    name="Elemento Component"
+    args={{
+        Label: 'nome';
+    }}
+  >
+    {(args) => <Elemento {...args} />}
+  </Story>
+</Canvas>
+```
+
+# Por hoje é só criânças!
+## Mãos na massa!!

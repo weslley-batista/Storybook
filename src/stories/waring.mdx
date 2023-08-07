@@ -1,0 +1,58 @@
+import { Meta } from "@storybook/blocks";
+
+<Meta title="Cuidados" />
+
+# Cuidado que devemos ter ! !
+
+## Stories de paginas completas
+
+Caso o seu componente tenha importações de bibliotecas, as importações devem ser feitas também no .stories.mdx.
+
+<b>EX:</b> o componente abaixo faz parte do nextAuth e contem a importação ``import { useSession, signIn, signOut } from "next-auth/react"`` no .tsx,
+quando for passar o component desse arquivo para o .stories.mdx também será necessario fazer a mesma importação.
+
+### Arquivo .tsx
+```
+#importação do nextAuth
+import { useSession, signIn, signOut } from "next-auth/react"
+
+export default function ComponentAuth() {
+const { data: session } = useSession()
+if(session) {
+    return <>
+    Signed in as {session.user.email} <br/>
+    <button onClick={() => signOut()}>Sign out</button>
+    </>
+}
+return <>
+    Not signed in <br/>
+    <button onClick={() => signIn()}>Sign in</button>
+</>
+}
+
+```
+
+### Arquivo .stories.mdx
+```
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+import { ComponentAuth } from './button'
+
+#importação do nextAuth
+import { useSession, signIn, signOut } from "next-auth/react"
+
+<Meta title="Componentes/ComponentAuth"  component={ComponentAuth} />
+
+<ComponentAuth/>
+<ArgsTable of={ComponentAuth} />
+
+<Canvas>
+<Story
+    name="ComponentAuth Component"
+    args={{ }}
+>
+    {(args) => <ComponentAuth {...args} />}
+</Story>
+</Canvas>
+
+```
+## 🫡

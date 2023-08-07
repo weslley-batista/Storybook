@@ -1,0 +1,37 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+import { ButtonComponent } from './button'
+
+
+<Meta title="Componentes/Button"  component={ButtonComponent} />
+
+# Botões
+<ButtonComponent  label={'Nome'} width={'50px'}/>
+
+<Canvas>
+  <Story
+    name="Button Component"
+    args={{
+        label:'Nome',
+        width: '',
+        height: '', 
+        backgroundColor: '', 
+        color: '', 
+        border: '', 
+        borderRadius: '', 
+        padding: '', 
+        margin: '', 
+        fontSize: '', 
+        fontFamily: '', 
+        cursor: '', 
+        transition: '', 
+        boxShadow: '', 
+        outline: '', 
+        display: '', 
+        textDecoration: ''
+    }}
+  >
+    {(args) => <ButtonComponent {...args} />}
+  </Story>
+</Canvas>
+
+<ArgsTable of={ButtonComponent} />
